@@ -4,19 +4,33 @@
 
    **ab** is a tool for benchmarking your Apache Hypertext Transfer Protocol (HTTP) server. It is designed to give you an impression of how your current Apache installation performs. This especially shows you how many requests per second your Apache installation is capable of serving.
 
+### 2.原理
+ab是apachebench命令的缩写。<br/>
 
-### 2.安装（ubuntu）
+ab命令会创建多个并发访问线程，模拟多个访问者同时对某一URL地址进行访问。它的测试目标是基于URL的，因此，它既可以用来测试apache的负载压力，也可以测试nginx、lighthttp、tomcat、IIS等其它Web服务器的压力。<br/>
+
+ab命令对发出负载的计算机要求很低，它既不会占用很高CPU，也不会占用很多内存。但却会给目标服务器造成巨大的负载，其原理类似CC攻击。自己测试使用也需要注意，否则一次上太多的负载。可能造成目标服务器资源耗完，严重时甚至导致死机
+
+
+
+### 3.安装（ubuntu）
 sudo apt-get install **apache2-utils**
  
 
-### 3.命令格式 
+### 4.命令格式 
 
 ab [options] [http[s]://]hostname[:port]/path  
 
 
-### 3.命令参数(options)
+### 5.命令参数(options)
 
-  
+
+* <font size=5>**-n requests** </font> <br/>
+Number of requests to perform for the benchmarking session. The default is to just perform a single request which usually leads to non-representative benchmarking results.
+
+* <font size=5>**-c concurrency**</font> </big><br/>
+Number of multiple requests to perform at a time. Default is one request at a time.
+
 * **-A auth-username:password** <br/>
 Supply BASIC Authentication credentials to the server. The username and password are separated by a single : and sent on the wire base64 encoded. The string is sent regardless of whether the server needs it (i.e., has sent an 401 authentication needed).
 
@@ -25,9 +39,6 @@ Size of TCP send/receive buffer, in bytes.
 
 * **-B local-address**<br/>
 Address to bind to when making outgoing connections.
-
-* <font size=5 color=blue>**-c concurrency**</font> </big><br/>
-Number of multiple requests to perform at a time. Default is one request at a time.
 
 * **-C cookie-name=value** <br/>
 Add a Cookie: line to the request. The argument is typically in the form of a name=value pair. This field is repeatable.
@@ -62,8 +73,6 @@ Do not report errors if the length of the responses is not constant. This can be
 * **-m HTTP-method**  <br/>
 Custom HTTP method for the requests. Available in 2.4.10 and later.
 
-* <font size=5 color=blue>**-n requests** </font> <br/>
-Number of requests to perform for the benchmarking session. The default is to just perform a single request which usually leads to non-representative benchmarking results.
 
 * **-p POST-file** <br/>
 File containing data to POST. Remember to also set -T.
