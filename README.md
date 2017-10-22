@@ -132,4 +132,4 @@ Specify SSL/TLS cipher suite (See openssl ciphers)
 
  测试：ab -n 1000 -c 100  me.love/hi
 
-![测试结果](http://p.ananas.chaoxing.com/star3/origin/10d222aa119812759bd199bcd845618e.png)
+![](http://p.ananas.chaoxing.com/star3/origin/10d222aa119812759bd199bcd845618e.png "测试结果")
