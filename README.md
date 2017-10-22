@@ -133,3 +133,102 @@ Specify SSL/TLS cipher suite (See openssl ciphers)
  测试：ab -n 1000 -c 100  me.love/hi
 
 ![](http://p.ananas.chaoxing.com/star3/origin/10d222aa119812759bd199bcd845618e.png "测试结果")
+
+
+
+
+* **Server Software**: Apache-coyote/1.1
+//平台apache 版本1.1
+
+* **Server Hostname**: me.love
+//服务器主机名
+
+* **Server Port**: 80
+//服务器端口
+
+* **Document Path**: /hi
+//测试的页面文档
+
+* **Document Length**: 1018 bytes
+//文档大小
+
+
+* **Concurrency Level**: 100
+//并发数
+
+* **Time taken for tests**: 1.732 seconds
+//整个测试持续的时间
+
+* **Complete requests**: 1000
+//完成的请求数量
+
+* **Failed requests**: 0
+//失败的请求数量
+
+* **Write errors**: 0
+
+* **Total transferred**: 142000 bytes
+//整个场景中的网络传输量
+
+* **HTML transferred**: 20000 bytes
+//整个场景中的HTML内容传输量
+
+
+* **Requests per second**: 577.36 [#/sec] (mean)
+ <br/>
+服务器并发处理能力的量化描述，单位是reqs/s，指的是在某个并发用户数下单位时间内处理的请求数。	
+<br/>
+某个并发用户数下单位时间内能处理的最大请求数，称之为最大吞吐率。
+记住：吞吐率是基于并发用户数的。这句话代表了两个含义：
+<br/>
+a、吞吐率和并发用户数相关
+<br/>
+b、不同的并发用户数下，吞吐率一般是不同的
+计算公式：总请求数/处理完成这些请求数所花费的时间，即
+Request per second=Complete requests/Time taken for tests
+必须要说明的是，这个数值表示当前机器的整体性能，值越大越好。
+
+
+* **Time per request**: 173.201 [ms] (mean)
+<br/>
+用户平均请求等待时间.
+<br/>
+计算公式：处理完成所有请求数所花费的时间/ （总请求数 / 并发用户数），即
+Time per request = Time taken for tests /( Complete requests / Concurrency Leve).
+
+
+* **Time per request**: 1.732 [ms] (mean, across all concurrent requests)
+<br/>计算公式：处理完成所有请求数所花费的时间/总请求数，即：
+Time taken for tests/Complete requests；
+<br/>可以看到，它是吞吐率的倒数。
+同时，它也等于用户平均请求等待时间/并发用户数，即
+Time per request/Concurrency Level
+
+* **Transfer rate**: 80.06 [Kbytes/sec] received
+//平均每秒网络上的流量，可以帮助排除是否存在网络流量过大导致响应时间延长的问题
+
+
+
+                                                         
+ **Percentage of the requests served within a certain time (ms)**
+
+  **50%    153**
+
+  **66%    167**
+
+  **75%    177**
+
+  **80%    183**
+
+  **90%    294**
+
+  **95%    334**
+
+  **98%    349**
+
+  **99%    352**
+
+ **100%    377 (longest request)**
+
+
+//整个场景中所有请求的响应情况。在场景中每个请求都有一个响应时间，其中50％的用户响应时间小于153 毫秒，60％ 的用户响应时间小于167 毫秒，最大的响应时间小于377 毫秒
