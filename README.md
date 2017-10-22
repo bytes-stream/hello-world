@@ -26,10 +26,25 @@ ab [options] [http[s]://]hostname[:port]/path
 
 
 * <font size=5>**-n requests** </font> <br/>
-Number of requests to perform for the benchmarking session. The default is to just perform a single request which usually leads to non-representative benchmarking results.
+Number of requests to perform for the benchmarking session. The default is to just perform a single request which usually leads to non-representative benchmarking results.(在测试会话中所执行的请求个数。默认时，仅执行一个请求。)
 
 * <font size=5>**-c concurrency**</font> </big><br/>
-Number of multiple requests to perform at a time. Default is one request at a time.
+Number of multiple requests to perform at a time. Default is one request at a time. (一次产生的请求个数。默认是一次一个)
+
+* **-t timelimit** <br/>
+Maximum number of seconds to spend for benchmarking. This implies a -n 50000 internally. Use this to benchmark the server within a fixed total amount of time. Per default there is no timelimit.-t (测试所进行的最大秒数。其内部隐含值是-n 50000，它可以使对服务器的测试限制在一个固定的总时间以内。默认时，没有时间限制。)
+
+* **-C cookie-name=value** <br/>
+Add a Cookie: line to the request. The argument is typically in the form of a name=value pair. This field is repeatable.
+
+* **-T content-type** <br/>
+Content-type header to use for POST/PUT data, eg. application/x-www-form-urlencoded. Default is text/plain.
+
+* **-p POST-file** <br/>
+File containing data to POST. Remember to also set -T.
+
+* **-H custom-header** <br/>
+Append extra headers to the request. The argument is typically in the form of a valid header line, containing a colon-separated field-value pair (i.e., "Accept-Encoding: zip/zop;8bit").
 
 * **-A auth-username:password** <br/>
 Supply BASIC Authentication credentials to the server. The username and password are separated by a single : and sent on the wire base64 encoded. The string is sent regardless of whether the server needs it (i.e., has sent an 401 authentication needed).
@@ -39,9 +54,6 @@ Size of TCP send/receive buffer, in bytes.
 
 * **-B local-address**<br/>
 Address to bind to when making outgoing connections.
-
-* **-C cookie-name=value** <br/>
-Add a Cookie: line to the request. The argument is typically in the form of a name=value pair. This field is repeatable.
 
 * **-d** <br/>
 Do not display the "percentage served within XX [ms] table". (legacy support).
@@ -58,8 +70,6 @@ Write all measured values out as a 'gnuplot' or TSV (Tab separate values) file. 
 * **-h** <br/>
 Display usage information.
 
-* **-H custom-header** <br/>
-Append extra headers to the request. The argument is typically in the form of a valid header line, containing a colon-separated field-value pair (i.e., "Accept-Encoding: zip/zop;8bit").
 
 * **-i** <br/>
 Do HEAD requests instead of GET.
@@ -73,9 +83,6 @@ Do not report errors if the length of the responses is not constant. This can be
 * **-m HTTP-method**  <br/>
 Custom HTTP method for the requests. Available in 2.4.10 and later.
 
-
-* **-p POST-file** <br/>
-File containing data to POST. Remember to also set -T.
 
 * **-P proxy-auth-username:password** <br/>
 Supply BASIC Authentication credentials to a proxy en-route. The username and password are separated by a single : and sent on the wire base64 encoded. The string is sent regardless of whether the proxy needs it (i.e., has sent an 407 proxy authentication needed).
@@ -92,11 +99,6 @@ Maximum number of seconds to wait before the socket times out. Default is 30 sec
 * **-S** <br/>
 Do not display the median and standard deviation values, nor display the warning/error messages when the average and median are more than one or two times the standard deviation apart. And default to the min/avg/max values. (legacy support).
 
-* **-t timelimit** <br/>
-Maximum number of seconds to spend for benchmarking. This implies a -n 50000 internally. Use this to benchmark the server within a fixed total amount of time. Per default there is no timelimit.
-
-* **-T content-type** <br/>
-Content-type header to use for POST/PUT data, eg. application/x-www-form-urlencoded. Default is text/plain.
 
 * **-u PUT-file** <br/>
 File containing data to PUT. Remember to also set -T.
@@ -124,3 +126,10 @@ String to use as attributes for &lt;td&gt;.
 
 * **-Z ciphersuite** <br/>
 Specify SSL/TLS cipher suite (See openssl ciphers)
+
+
+### 6.测试与结果分析
+
+ 测试：ab -n 1000 -c 100  me.love/hi
+
+![测试结果](http://p.ananas.chaoxing.com/star3/origin/10d222aa119812759bd199bcd845618e.png)
